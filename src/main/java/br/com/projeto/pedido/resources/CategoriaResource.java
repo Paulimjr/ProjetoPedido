@@ -1,15 +1,26 @@
 package br.com.projeto.pedido.resources;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.com.projeto.pedido.entity.Categoria;
+import br.com.projeto.pedido.service.CategoriaService;
 
 @RestController
 @RequestMapping(value = "/categorias")
 public class CategoriaResource {
 	
-	@RequestMapping("/listar")
-	public String listar() {
-		return "Está funcionando";
+	@Autowired
+	private CategoriaService categoriaService;
+	
+	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Categoria> listar(@PathVariable final Integer id) {
+		Categoria cat = this.categoriaService.buscar(id);
+		return  ResponseEntity.ok().body(cat);
 	}
 	
 }
