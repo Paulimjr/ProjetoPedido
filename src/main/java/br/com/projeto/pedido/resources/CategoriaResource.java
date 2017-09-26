@@ -17,10 +17,16 @@ public class CategoriaResource {
 	@Autowired
 	private CategoriaService categoriaService;
 	
+	/**
+	 * API para consultar uma categoria pelo identificador
+	 * 
+	 * @author paulo
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Categoria> listar(@PathVariable final Integer id) {
+	public ResponseEntity<Categoria> buscarCategoriaPeloId(@PathVariable final Integer id) {
 		Categoria cat = this.categoriaService.buscar(id);
 		return  ResponseEntity.ok().body(cat);
 	}
-	
 }

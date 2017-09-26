@@ -23,5 +23,5 @@ public class CategoriaService {
 		Categoria cat = categoriaRepository.findOne(id) ;		
 		return cat;
 	}
-
+		
 }
