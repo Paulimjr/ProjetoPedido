@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projeto.pedido.entity.Categoria;
 import br.com.projeto.pedido.service.CategoriaService;
+import br.com.projeto.pedido.service.exception.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -25,7 +26,7 @@ public class CategoriaResource {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Categoria> buscarCategoriaPeloId(@PathVariable final Integer id) {
+	public ResponseEntity<?> buscarCategoriaPeloId(@PathVariable final Integer id) {
 		Categoria cat = this.categoriaService.buscar(id);
 		return  ResponseEntity.ok().body(cat);
 	}
