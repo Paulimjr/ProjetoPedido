@@ -17,7 +17,7 @@
     
 4. Abra o projeto em sua IDE (ex: Eclipse ou NetBeans) importe o projeto e rode.
 
-#ENDPOINTS
-  /categorias/{id} - Retorna a categoria pelo ID.
+- ENDPOINTS
+   - /categorias/{id} - Retorna a categoria pelo ID.
 
 
