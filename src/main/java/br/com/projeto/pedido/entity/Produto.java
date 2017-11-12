@@ -15,6 +15,12 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+/**
+ * Classe de Produto
+ * 
+ * @author paulo
+ *
+ */
 @Entity
 public class Produto implements Serializable {
 	
