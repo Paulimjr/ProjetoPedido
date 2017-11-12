@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projeto.pedido.entity.Categoria;
 import br.com.projeto.pedido.service.CategoriaService;
-import br.com.projeto.pedido.service.exception.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -22,8 +21,8 @@ public class CategoriaResource {
 	 * API para consultar uma categoria pelo identificador
 	 * 
 	 * @author paulo
-	 * @param id
-	 * @return
+	 * @param id o identificador da categoria
+	 * @return a categoria
 	 */
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> buscarCategoriaPeloId(@PathVariable final Integer id) {
