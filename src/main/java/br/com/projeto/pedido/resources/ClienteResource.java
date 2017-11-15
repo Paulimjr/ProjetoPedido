@@ -30,7 +30,7 @@ public class ClienteResource {
 	 * @return o cliente
 	 */
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> buscarCategoriaPeloId(@PathVariable final Integer id) {
+	public ResponseEntity<?> buscarClientePeloId(@PathVariable final Integer id) {
 		Cliente cli = this.clienteService.buscar(id);
 		return  ResponseEntity.ok().body(cli);
 	}
