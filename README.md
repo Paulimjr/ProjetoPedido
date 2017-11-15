@@ -18,5 +18,6 @@
 
 - ENDPOINTS
    - /categorias/{id} - Retorna a categoria pelo ID.
+   - /clientes/{id} - Retorna o cliente pelo ID.
 
 
