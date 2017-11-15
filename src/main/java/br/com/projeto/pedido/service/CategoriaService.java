@@ -7,6 +7,12 @@ import br.com.projeto.pedido.entity.Categoria;
 import br.com.projeto.pedido.repository.CategoriaRepository;
 import br.com.projeto.pedido.service.exception.ObjectNotFoundException;
 
+/**
+ * Controlar serviços relacionado a categoria
+ * 
+ * @author paulo
+ *
+ */
 @Service
 public class CategoriaService {
 	

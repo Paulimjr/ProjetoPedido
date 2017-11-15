@@ -7,32 +7,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto.pedido.entity.Categoria;
-import br.com.projeto.pedido.service.CategoriaService;
-
+import br.com.projeto.pedido.entity.Cliente;
+import br.com.projeto.pedido.service.ClienteService;
 /**
- * Controlar as requisições de cateogorias
+ * Controlar as requisções de clientes
  * 
  * @author paulo
  *
  */
 @RestController
-@RequestMapping(value = "/categorias")
-public class CategoriaResource {
-	
+@RequestMapping(value = "/clientes")
+public class ClienteResource {
+
 	@Autowired
-	private CategoriaService categoriaService;
+	private ClienteService clienteService;
 	
 	/**
-	 * API para consultar uma categoria pelo identificador
+	 * API para consultar um cliente pelo identificador
 	 * 
 	 * @author paulo
-	 * @param id o identificador da categoria
-	 * @return a categoria
+	 * @param id o identificador do cliente
+	 * @return o cliente
 	 */
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> buscarCategoriaPeloId(@PathVariable final Integer id) {
-		Categoria cat = this.categoriaService.buscar(id);
-		return  ResponseEntity.ok().body(cat);
+		Cliente cli = this.clienteService.buscar(id);
+		return  ResponseEntity.ok().body(cli);
 	}
 }
