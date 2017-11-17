@@ -38,6 +38,10 @@ public class Cliente implements Serializable {
 	@ElementCollection
 	@CollectionTable(name = "telefone")
 	private Set<String> telefones = new HashSet<>();
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy="pedido")
+	private List<Pedido> pedidos = new ArrayList<>();
 
 	public Cliente(Integer id, String nome, String email, String cpfOuCnjpj, TipoCliente tipo) {
 		super();
@@ -148,6 +152,27 @@ public class Cliente implements Serializable {
 	 */
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
+	}
+	
+	/**
+	 * @return the pedidos
+	 */
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	/**
+	 * @param pedidos the pedidos to set
+	 */
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	/**
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
 	}
 
 	/* (non-Javadoc)
