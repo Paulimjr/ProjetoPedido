@@ -36,11 +36,10 @@ public class Cliente implements Serializable {
 	private List<Endereco> endercos = new ArrayList<>();
 	
 	@ElementCollection
-	@CollectionTable(name = "telefone")
+	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
-	@JsonManagedReference
-	@OneToMany(mappedBy="pedido")
+	@OneToMany(mappedBy="cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 
 	public Cliente(Integer id, String nome, String email, String cpfOuCnjpj, TipoCliente tipo) {
@@ -174,7 +173,7 @@ public class Cliente implements Serializable {
 	public void setTipo(Integer tipo) {
 		this.tipo = tipo;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
