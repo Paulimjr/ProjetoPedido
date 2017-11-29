@@ -1,7 +1,14 @@
 package br.com.projeto.pedido.service;
 
+import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.projeto.pedido.entity.Categoria;
 import br.com.projeto.pedido.repository.CategoriaRepository;
@@ -36,5 +43,15 @@ public class CategoriaService {
 		
 		return cat;
 	}
-		
+	
+	/**
+	 * Método para inserir uma nova categoria
+	 * 
+	 * @param obj
+	 * @return
+	 */
+	public Categoria insert(final Categoria cat) {
+		 cat.setId(null);
+		 return categoriaRepository.save(cat);
+	}		
 }
