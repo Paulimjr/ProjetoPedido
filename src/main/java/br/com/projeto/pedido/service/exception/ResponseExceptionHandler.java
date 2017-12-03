@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ResponseExceptionHandler {
 	
 	/**
-	 * Monta responde para exception da API 
+	 * Monta response para exception da API 
 	 * 
 	 * @param e
 	 * @param request
@@ -28,6 +28,24 @@ public class ResponseExceptionHandler {
 		StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), e.getMessage(), dataAtual);
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+	}
+	
+	/**
+	 * Monta response para exception da API 
+	 * 
+	 * @param e
+	 * @param request
+	 * @return
+	 */
+	@ExceptionHandler(DataIntegrityException.class)
+	public ResponseEntity<StandardError> dataIntegrity(DataIntegrityException e, 
+			HttpServletRequest request) {
+		
+		LocalDate date = LocalDate.now();
+		String dataAtual = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage(), dataAtual);
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 	
 }

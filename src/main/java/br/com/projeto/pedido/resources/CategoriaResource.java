@@ -64,8 +64,22 @@ public class CategoriaResource {
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	 public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
 	 	obj.setId(id);
-	 	System.out.println("objk: "+obj.toString());
 	 	obj = categoriaService.update(obj);
 	 	return ResponseEntity.noContent().build();
 	 }
+	
+	/**
+	 * API para deletar uma categoria
+	 * 
+	 * @param obj a categoria para alterar
+	 * @param id o identificador da categoria
+	 * @return
+	 */
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	 public ResponseEntity<Void> delete(@PathVariable Integer id) {	 	
+	 	categoriaService.delete(id);
+	 	return ResponseEntity.noContent().build();
+	 }
+	
+	
 }

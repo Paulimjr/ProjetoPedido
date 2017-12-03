@@ -12,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.projeto.pedido.entity.Categoria;
 import br.com.projeto.pedido.repository.CategoriaRepository;
+import br.com.projeto.pedido.service.exception.DataIntegrityException;
 import br.com.projeto.pedido.service.exception.ObjectNotFoundException;
 
 /**
@@ -63,7 +64,23 @@ public class CategoriaService {
 	 */
 	public Categoria update(Categoria obj) {
 		Categoria cat = this.buscar(obj.getId());
-		System.out.println("categoria encontrada: "+cat.toString());
+		cat.setNome(obj.getNome());
+		
 		return this.categoriaRepository.save(cat);
+	}
+	
+	/**
+	 * Método para deletar uma categoria
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public void delete(final Integer id) {
+		this.buscar(id);
+		try {
+			categoriaRepository.delete(id);
+		} catch (DataIntegrityException e) {
+			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
+		}
 	}		
 }
