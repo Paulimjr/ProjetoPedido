@@ -53,5 +53,17 @@ public class CategoriaService {
 	public Categoria insert(final Categoria cat) {
 		 cat.setId(null);
 		 return categoriaRepository.save(cat);
+	}
+
+	/**
+	 * Método para alterar uma categoria
+	 * 
+	 * @param obj
+	 * @return
+	 */
+	public Categoria update(Categoria obj) {
+		Categoria cat = this.buscar(obj.getId());
+		System.out.println("categoria encontrada: "+cat.toString());
+		return this.categoriaRepository.save(cat);
 	}		
 }

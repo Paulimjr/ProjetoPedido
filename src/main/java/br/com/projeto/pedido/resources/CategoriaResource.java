@@ -43,7 +43,7 @@ public class CategoriaResource {
 	/**
 	 * API para inserir uma nova categoria
 	 * 
-	 * @param cat
+	 * @param cat a categoria para inserir
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST)
@@ -53,4 +53,19 @@ public class CategoriaResource {
  				.path("/{id}").buildAndExpand(cat.getId()).toUri();
 	 	return ResponseEntity.created(uri).build();
 	}
+	
+	/**
+	 * API para alterar uma categoria
+	 * 
+	 * @param obj a categoria para alterar
+	 * @param id o identificador da categoria
+	 * @return
+	 */
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	 public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
+	 	obj.setId(id);
+	 	System.out.println("objk: "+obj.toString());
+	 	obj = categoriaService.update(obj);
+	 	return ResponseEntity.noContent().build();
+	 }
 }

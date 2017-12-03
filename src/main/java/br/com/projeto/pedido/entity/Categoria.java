@@ -79,6 +79,12 @@ public class Categoria implements Serializable {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-	
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Categoria [id=" + id + ", nome=" + nome + ", produtos=" + produtos + "]";
+	}
 }
