@@ -109,7 +109,7 @@ public class ProjetoPedidoApplication implements CommandLineRunner {
 		Endereco e1 = new Endereco(null, "Rua flores", "300","Apt", "Jardim", "38055580", cli1, c1);
 		Endereco e2 = new Endereco(null, "Rua Johen", "450","sem complemento", "Lidice", "38055580", cli1, c2);
 		
-		cli1.getEndercos().addAll(Arrays.asList(e1, e2));
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 		
 		clienteRepository.save(Arrays.asList(cli1));
 		enderecoRepository.save(Arrays.asList(e1, e2));

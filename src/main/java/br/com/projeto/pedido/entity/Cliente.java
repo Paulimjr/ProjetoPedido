@@ -34,7 +34,7 @@ public class Cliente implements Serializable {
 	private Integer tipo;
 	
 	@OneToMany(mappedBy="cliente")
-	private List<Endereco> endercos = new ArrayList<>();
+	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@ElementCollection
 	@CollectionTable(name = "TELEFONE")
@@ -130,15 +130,15 @@ public class Cliente implements Serializable {
 	/**
 	 * @return the endercos
 	 */
-	public List<Endereco> getEndercos() {
-		return endercos;
+	public List<Endereco> getEnderecos() {
+		return enderecos;
 	}
 
 	/**
 	 * @param endercos the endercos to set
 	 */
-	public void setEndercos(List<Endereco> endercos) {
-		this.endercos = endercos;
+	public void setEndercos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 
 	/**

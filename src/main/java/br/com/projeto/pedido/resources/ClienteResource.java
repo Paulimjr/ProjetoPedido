@@ -1,5 +1,6 @@
 package br.com.projeto.pedido.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.projeto.pedido.dto.ClienteDTO;
+import br.com.projeto.pedido.dto.ClienteNewDTO;
 import br.com.projeto.pedido.entity.Cliente;
 import br.com.projeto.pedido.service.ClienteService;
 /**
@@ -31,6 +34,21 @@ public class ClienteResource {
 	@Autowired
 	private ClienteService clienteService;
 	
+	/**
+	 * API para inserir um cliente
+	 * 
+	 * @param objDto
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto) {
+		Cliente obj = clienteService.fromDTO(objDto);
+		obj = clienteService.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+
 	/**
 	 * API para consultar um cliente pelo identificador
 	 * 
