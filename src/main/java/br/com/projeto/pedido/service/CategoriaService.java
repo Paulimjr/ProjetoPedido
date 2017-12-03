@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+
+import br.com.projeto.pedido.dto.CategoriaDTO;
 import br.com.projeto.pedido.entity.Categoria;
 import br.com.projeto.pedido.repository.CategoriaRepository;
 import br.com.projeto.pedido.service.exception.DataIntegrityException;
@@ -104,5 +106,15 @@ public class CategoriaService {
 		PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf(direction), orderBy);
 
 		return categoriaRepository.findAll(pageRequest);
+	}
+	
+	/**
+	 * Converte CategoriaDTO para entidade Categoria
+	 * 
+	 * @param catDto
+	 * @return
+	 */
+	public Categoria fromDTO(CategoriaDTO catDto) {
+		return new Categoria(catDto.getId(), catDto.getNome());
 	}		
 }
