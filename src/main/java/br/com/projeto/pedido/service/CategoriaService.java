@@ -1,16 +1,12 @@
 package br.com.projeto.pedido.service;
 
-import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import br.com.projeto.pedido.entity.Categoria;
 import br.com.projeto.pedido.repository.CategoriaRepository;
 import br.com.projeto.pedido.service.exception.DataIntegrityException;
@@ -92,5 +88,21 @@ public class CategoriaService {
 	 */
 	public List<Categoria> findAll() {
 		return this.categoriaRepository.findAll();
+	}
+	
+	/**
+	 * Método para encontrar uma categoria e fazer paginação
+	 * 
+	 * @param page
+	 * @param linesPerPage
+	 * @param orderBy
+	 * @param direction
+	 * @return as categorias
+	 */
+	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		
+		PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf(direction), orderBy);
+
+		return categoriaRepository.findAll(pageRequest);
 	}		
 }
