@@ -1,6 +1,8 @@
 package br.com.projeto.pedido.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.projeto.pedido.dto.CategoriaDTO;
 import br.com.projeto.pedido.entity.Categoria;
 import br.com.projeto.pedido.service.CategoriaService;
 
@@ -80,6 +83,18 @@ public class CategoriaResource {
 	 	categoriaService.delete(id);
 	 	return ResponseEntity.noContent().build();
 	 }
+	
+	/**
+	 * API para listar todas as categorias cadastradas
+	 * 
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<Categoria> categorias = categoriaService.findAll();
+		List<CategoriaDTO> listCat = categorias.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());  
+		return ResponseEntity.ok().body(listCat);
+	}
 	
 	
 }

@@ -1,6 +1,7 @@
 package br.com.projeto.pedido.service;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -82,5 +83,14 @@ public class CategoriaService {
 		} catch (DataIntegrityException e) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
 		}
+	}
+	
+	/**
+	 * Método para retornar todas as categorias cadastradas
+	 * 
+	 * @return
+	 */
+	public List<Categoria> findAll() {
+		return this.categoriaRepository.findAll();
 	}		
 }
