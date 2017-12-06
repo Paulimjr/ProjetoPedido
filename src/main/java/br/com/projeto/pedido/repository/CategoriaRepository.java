@@ -13,6 +13,6 @@ import br.com.projeto.pedido.entity.Categoria;
  */
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
-	
+
 
 }

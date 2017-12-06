@@ -1,5 +1,6 @@
 package br.com.projeto.pedido.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import br.com.projeto.pedido.dto.CategoriaDTO;
 import br.com.projeto.pedido.entity.Categoria;
+import br.com.projeto.pedido.entity.Produto;
 import br.com.projeto.pedido.repository.CategoriaRepository;
+import br.com.projeto.pedido.repository.ProdutoRepository;
 import br.com.projeto.pedido.service.exception.DataIntegrityException;
 import br.com.projeto.pedido.service.exception.ObjectNotFoundException;
 
@@ -25,6 +28,10 @@ public class CategoriaService {
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	@Autowired
+	private ProdutoService produtoService;
+	
 	
 	/**
 	 * Método para buscar uma categoria pelo ID
@@ -116,5 +123,6 @@ public class CategoriaService {
 	 */
 	public Categoria fromDTO(CategoriaDTO catDto) {
 		return new Categoria(catDto.getId(), catDto.getNome());
-	}		
+	}
+	
 }

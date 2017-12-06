@@ -100,5 +100,17 @@ public class ProdutoResource {
  				.path("/{id}").buildAndExpand(prd.getId()).toUri();
 	 	return ResponseEntity.created(uri).build();
 	}
+	
+	/**
+	 * API para remover um produto
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		produtoService.deletarProduto(id);
+		return ResponseEntity.noContent().build();
+	}
 
 }

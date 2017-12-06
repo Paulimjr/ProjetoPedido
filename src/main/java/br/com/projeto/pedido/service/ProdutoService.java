@@ -14,6 +14,7 @@ import br.com.projeto.pedido.entity.Categoria;
 import br.com.projeto.pedido.entity.Produto;
 import br.com.projeto.pedido.repository.CategoriaRepository;
 import br.com.projeto.pedido.repository.ProdutoRepository;
+import br.com.projeto.pedido.service.exception.DataIntegrityException;
 import br.com.projeto.pedido.service.exception.ObjectNotFoundException;
 
 @Service
@@ -116,5 +117,31 @@ public class ProdutoService {
 		prd.setId(null);
 		return produtoRepository.save(prd);
 	}
+	
+	/**
+	 * Passando o produto já com a categoria
+	 * 
+	 * @param prd
+	 * @return
+	 */
+	public Produto insereCategoriaNoProduto(final Produto prd) {
+		return produtoRepository.save(prd);
+	}
 
+	/**
+	 * Deletar um produto especifico
+	 * 
+	 * @param id
+	 */
+	public void deletarProduto(Integer id) {
+		this.buscarProdutoPeloId(id);
+		
+		try {
+			produtoRepository.delete(id);
+		}
+		catch (DataIntegrityException e) {
+			throw new DataIntegrityException("Não é possível excluir porque há pedidos ou categorias relacionados");
+		}
+	}
+	
 }
