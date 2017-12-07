@@ -57,6 +57,19 @@ public class Pedido implements Serializable {
 	}
 	
 	/**
+	 * Pega o valor total do pedido
+	 * 
+	 * @return
+	 */
+	public double getValorTotal() {
+		double soma = 0.0;
+		for (ItemPedido ip : itens) {
+			soma = soma + ip.getSubTotal();
+		}
+		return soma;
+	}
+	
+	/**
 	 * @return the itens
 	 */
 	public Set<ItemPedido> getItens() {
