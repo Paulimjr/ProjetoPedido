@@ -59,7 +59,7 @@ public class Pedido implements Serializable {
 	/**
 	 * Pega o valor total do pedido
 	 * 
-	 * @return
+	 * @return o total do pedido
 	 */
 	public double getValorTotal() {
 		double soma = 0.0;
